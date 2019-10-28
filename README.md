@@ -1,0 +1,2 @@
+# origine-enfants-issus-immigration
+À partir des donnés de l'enquête Emploi en continu de l'INSEE entre 2005 et 2017, le script estime dans quelles proportions les gens issus de l'immigration font des enfants avec des gens dont tous les grand-parents étaient de nationalité française à la naissance, ainsi que dans quelles proportions les gens dont les deux parents étaient français à la naissance font des enfants avec des gens issus de l'immigration, selon l'origine des personnes issues de l'immigration et l'année de naissance des enfants.
