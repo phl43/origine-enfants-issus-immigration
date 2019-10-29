@@ -3,8 +3,8 @@ library(memisc)
 library(data.table)
 
 # convertit le code de pays de la variable "pnai28" ou "natmer" dans la nomenclature de la
-# variable nat14 qui est diffusée à la place de nat28 à partir de l'enquête de 2013
-# note : si le pnai28/natmer a une valeur correspondant à la France, la fonction renvoie NA
+# variable "nat14" qui est diffusée à la place de "nat28" à partir de l'enquête de 2013
+# note : si "pnai28"/"natmer" a une valeur correspondant à la France, la fonction renvoie NA
 convertir_code_pays <- function(code, source) {
   if (source == "pnai28") {
     case_when(code == 11 ~ 21L,
@@ -61,7 +61,7 @@ apparier_enfants_parents <- function(logement, noi, anais, noi_père, noi_mère,
       paingpp <- père$paiperc
       paingmp <- père$paimerc
     } else {
-      # la variable PNAI28 n'a pas été diffusée en 2013 et 2014, donc pour ces années on fait l'hypothèse que les
+      # la variable "pnai28" n'a pas été diffusée en 2013 et 2014, donc pour ces années on fait l'hypothèse que les
       # personnes ayant acquis la nationalité française avaient la nationalité de naissance de leur mère avant ça
       if (année_enquête < 2015) {
         painp <- NA_integer_
@@ -109,7 +109,7 @@ apparier_enfants_parents <- function(logement, noi, anais, noi_père, noi_mère,
     else {
       painm <- NA_integer_
       
-      # la variable PNAI28 n'a pas été diffusée en 2013 et 2014, donc pour ces années on fait l'hypothèse que les
+      # la variable "pnai28" n'a pas été diffusée en 2013 et 2014, donc pour ces années on fait l'hypothèse que les
       # personnes ayant acquis la nationalité française avaient la nationalité de naissance de leur mère avant ça
       if (année_enquête < 2015) {
         natnm <- case_when(mère$nfrred == 1 ~ 10L,
@@ -162,14 +162,15 @@ apparier_enfants_parents <- function(logement, noi, anais, noi_père, noi_mère,
 origine_enfant <- function(natnp, natnm, natngpp, natngmp, natngpm, natngmm, année_enquête) {
   if (année_enquête <= 2012) {
     # on fait l'hypothèse que tous les gens ayant la nationalité d'un pays du Proche-Orient à la naissance viennent
-    # de Turquie car les nomenclatures de "nat14" et "natmerc"/"natperc" ne correspondent pas exactement
+    # de Turquie car les nomenclatures de "nat28" et "natmerc"/"natperc" ne correspondent pas exactement
     case_when(natngpp == 1 & natngmp == 1 & natngpm == 1 & natngmm == 1 ~ "France",
               natnp %in% c(11, 12, 13) | natnm %in% c(11, 12, 13) | natngpp == 6 |
               natngmp == 6 | natngpm == 6 | natngmm == 6 ~ "Maghreb",
               natnp == 14 | natnm == 14 | natngpp == 7 | natngmp == 7 | natngpm == 7 | natngmm == 7 ~ "Reste de l'Afrique",
               natnp == 45 | natnm == 45 | natngpp == 8 | natngmp == 8 | natngpm == 8 | natngmm == 8 ~ "Turquie",
-              natnp %in% c(15, 51, 52, 60) | natnm %in% c(15, 51, 52, 60) | natngpp %in% c(9, 10) | natngmp %in% c(9, 10) |
-              natngpm %in% c(9, 10) |natngmm %in% c(9, 10) ~ "Reste du monde",
+              natnp == 15 | natnm == 15 | natngpp == 9 | natngmp == 9 | natngpm == 9 | natngmm == 9 ~ "Cambodge/Laos/Vietnam",
+              natnp %in% c(51, 52, 60) | natnm %in% c(51, 52, 60) | natngpp == 10 | natngmp == 10 |
+              natngpm == 10 | natngmm == 10 ~ "Reste du monde",
               (natnp >= 21 & natnp <= 48 & natnp != 45) | (natnm >= 21 & natnm <= 48 & natnm != 45) | natngpp %in% c(2,3,4) |
               natngmp %in% c(2,3,4) | natngpm %in% c(2,3,4) | natngmm %in% c(2,3,4) ~ "Europe",
               TRUE ~ NA_character_)
@@ -181,8 +182,9 @@ origine_enfant <- function(natnp, natnm, natngpp, natngmp, natngpm, natngmm, ann
               natngmp == 6 | natngpm == 6 | natngmm == 6 ~ "Maghreb",
               natnp == 24 | natnm == 24 | natngpp == 7 | natngmp == 7 | natngpm == 7 | natngmm == 7 ~ "Reste de l'Afrique",
               natnp == 31 | natnm == 31 | natngpp == 8 | natngmp == 8 | natngpm == 8 | natngmm == 8 ~ "Turquie",
-              natnp %in% c(32, 41, 51) | natnm %in% c(32, 41, 51) | natngpp %in% c(9, 10) | natngmp %in% c(9, 10) |
-              natngpm %in% c(9, 10) |natngmm %in% c(9, 10) ~ "Reste du monde",
+              natnp == 32 | natnm == 32 | natngpp == 9 | natngmp == 9 | natngpm == 9 | natngmm == 9 ~ "Cambodge/Laos/Vietnam",
+              natnp %in% c(41, 51) | natnm %in% c(41, 51) | natngpp == 10 | natngmp == 10 |
+              natngpm == 10 | natngmm == 10 ~ "Reste du monde",
               (natnp >= 11 & natnp <= 15) | (natnm >= 11 & natnm <= 15) | natngpp %in% c(2,3,4) |
               natngmp %in% c(2,3,4) | natngpm %in% c(2,3,4) | natngmm %in% c(2,3,4) ~ "Europe",
               TRUE ~ NA_character_)
