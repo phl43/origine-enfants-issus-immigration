@@ -408,7 +408,7 @@ taille_échantillon_petit_enfants_immigré <- proportion_mixité_petit_enfants_i
 ggplot(évolution_mixité_enfants_natif_carré, aes(x = anais, y = prop_mixte, group = origine, color = origine)) +
   geom_line(size = 1) +
   theme_bw() +
-  ggtitle("Proportion d'enfants, parmi ceux ayant au moins un parent dont les deux parents sont français de naissance, selon l'origine de l'autre parent par année de naissance\n(calcul basé uniquement sur les enfants vivant avec leurs deux parents au moment de l'enquête)") +
+  ggtitle("Proportion d'enfants, parmi ceux ayant au moins un parent dont les deux parents sont français de naissance, selon l'origine de l'autre parent\n(calcul basé uniquement sur les enfants vivant avec leurs deux parents au moment de l'enquête)") +
   xlab("Année de naissance") +
   ylab("Proportion") +
   scale_color_discrete(name = "Origine") +
@@ -422,7 +422,7 @@ ggplot(évolution_mixité_enfants_natif_carré, aes(x = anais, y = prop_mixte, g
 ggplot(évolution_mixité_enfants_immigré, aes(x = anais, y = prop_mixte, group = origine, color = origine)) +
   geom_line(size = 1) +
   theme_bw() +
-  ggtitle("Proportion d'enfants, parmi ceux ayant au moins un parent de nationalité étrangère à la naissance, dont l'autre parent\na deux parents qui étaient français à la naissance par année de naissance de l'enfant\n(calcul basé uniquement sur les enfants vivant avec leurs deux parents au moment de l'enquête)") +
+  ggtitle("Proportion d'enfants, parmi ceux ayant au moins un parent immigré, dont l'autre parent a deux parents qui étaient français à la naissance\n(calcul basé uniquement sur les enfants vivant avec leurs deux parents au moment de l'enquête)") +
   xlab("Année de naissance") +
   ylab("Proportion") +
   scale_color_discrete(name = "Origine") +
@@ -436,7 +436,7 @@ ggplot(évolution_mixité_enfants_immigré, aes(x = anais, y = prop_mixte, group
 ggplot(évolution_mixité_petit_enfants_immigré, aes(x = anais, y = prop_mixte, group = origine, color = origine)) +
   geom_line(size = 1) +
   theme_bw() +
-  ggtitle("Proportion d'enfants, parmi ceux dont au moins un parent était de nationalité française à la naissance mais avait lui-même au moins un parent qui était\nétranger à la naissance, dont l'autre parent a deux parents qui étaient français à la naissance par année de naissance de l'enfant\n(calcul basé uniquement sur les enfants vivant avec leurs deux parents au moment de l'enquête)") +
+  ggtitle("Proportion d'enfants, parmi ceux dont au moins un parent est né en France de parents immigrés, dont l'autre parent a deux parents qui étaient français à la naissance\n(calcul basé uniquement sur les enfants vivant avec leurs deux parents au moment de l'enquête)") +
   xlab("Année de naissance") +
   ylab("Proportion") +
   scale_color_discrete(name = "Origine") +
