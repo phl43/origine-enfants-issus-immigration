@@ -158,7 +158,7 @@ apparier_enfants_parents <- function(logement, noi, anais, noi_père, noi_mère,
 }
 
 # renvoie l'origine de l'enfant en fonction de la nationalité de naissance de ses grand-parents
-# note : on hiérarchise les origines avec Maghreb > Reste de l'Afrique > Turquie > Europe
+# note : on hiérarchise les origines avec Maghreb > Reste de l'Afrique > Turquie > Cambodge/Laos/Vietnam > Europe
 origine_enfant <- function(natnp, natnm, natngpp, natngmp, natngpm, natngmm, année_enquête) {
   if (année_enquête <= 2012) {
     # on fait l'hypothèse que tous les gens ayant la nationalité d'un pays du Proche-Orient à la naissance viennent
